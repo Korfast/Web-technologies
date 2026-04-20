@@ -1,1 +1,56 @@
+# OS metadata
+.DS_Store
+Thumbs.db
+desktop.ini
 
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# PHP Composer
+vendor/
+composer.lock   # если нужно игнорировать (обычно коммитят, но для учебных можно игнорировать)
+composer.phar
+
+# Logs & cache
+*.log
+*.cache
+cache/
+logs/
+session/
+temp/
+tmp/
+
+# Environment & config
+.env
+.env.local
+.env.*.local
+config.local.php
+config.php~   # бэкапы
+
+# PHP error log
+php_errors.log
+error_log
+
+# Uploads / user content (если есть загрузка файлов)
+uploads/
+*.tmp
+
+# Package managers (если используются Node.js)
+node_modules/
+npm-debug.log
+
+# Compiled or minified files (опционально)
+*.min.css
+*.min.js
+
+# Backup files
+*.bak
+*.old
+*.orig
