@@ -3,7 +3,21 @@
 Thumbs.db
 desktop.ini
 
-# IDE / Editor
+# Visual Studio (all versions)
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.vsidx
+*.wsuo
+*.slnx
+*.sqlite
+*.backup.json
+VSWorkspaceState.json
+ProjectSettings.json
+
+# Other IDEs
 .vscode/
 .idea/
 *.swp
@@ -13,10 +27,12 @@ desktop.ini
 .classpath
 .settings/
 
-# PHP Composer
+# PHP
 vendor/
-composer.lock   # если нужно игнорировать (обычно коммитят, но для учебных можно игнорировать)
+composer.lock
 composer.phar
+php_errors.log
+error_log
 
 # Logs & cache
 *.log
@@ -27,30 +43,40 @@ session/
 temp/
 tmp/
 
-# Environment & config
+# Config
 .env
 .env.local
 .env.*.local
 config.local.php
-config.php~   # бэкапы
+config.php~
 
-# PHP error log
-php_errors.log
-error_log
+# Office temp files
+~$*
+*.~lock.*
 
-# Uploads / user content (если есть загрузка файлов)
+# Uploads
 uploads/
 *.tmp
 
-# Package managers (если используются Node.js)
+# Node.js (if any)
 node_modules/
 npm-debug.log
 
-# Compiled or minified files (опционально)
+# Minified
 *.min.css
 *.min.js
 
-# Backup files
+# Backups
 *.bak
 *.old
 *.orig
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.o
+*.a
+
+# Windows shortcuts
+*.lnk
