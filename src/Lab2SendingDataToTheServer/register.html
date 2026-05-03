@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация пользователя</title>
+    <style>
+        body { font-family: Arial; margin: 2rem; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: inline-block; width: 120px; }
+        input, textarea { width: 250px; }
+    </style>
+</head>
+<body>
+    <h2>Анкета регистрации</h2>
+    <form action="save.php" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label>Логин (email):</label>
+            <input type="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label>Пароль:</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label>ФИО:</label>
+            <input type="text" name="fullname" required>
+        </div>
+        <div class="form-group">
+            <label>Возраст:</label>
+            <input type="number" name="age" min="1" max="120" required>
+        </div>
+        <div class="form-group">
+            <label>Адрес:</label>
+            <textarea name="address" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Аватарка:</label>
+            <input type="file" name="avatar" accept="image/*" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Отправить">
+            <input type="reset" value="Очистить">
+        </div>
+    </form>
+</body>
+</html>
+
+
+
