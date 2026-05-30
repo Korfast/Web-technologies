@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа №1: Основы JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 2rem;
+        }
+
+        .info {
+            background: #f0f0f0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        button {
+            font-size: 1.2rem;
+            margin: 0.5rem;
+            padding: 0.5rem 1.5rem;
+            cursor: pointer;
+        }
+
+        .taskArea {
+            margin-top: 2rem;
+            border-top: 2px solid #ccc;
+            padding-top: 1rem;
+        }
+
+        td {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #999;
+        }
+
+        .tableContainer {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+            .tableContainer table {
+                margin: 0;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="info">
+        <h2>Информация об ученике</h2>
+        <p><strong>ФИО:</strong> Фаст Корней Михайлович</p>
+        <p><strong>Группа:</strong> 574-2</p>
+        <p><strong>Вариант:</strong> 1 (13)</p>
+    </div>
+
+    <button onclick="task1()">Задание 1: ФИО и подтверждение</button>
+    <button onclick="task2()">Задание 2: Время через минуту</button>
+    <button onclick="task3()">Задание 3: Две цветные таблицы 10×10</button>
+
+    <div class="taskArea" id="output">
+        <p>Нажмите на кнопку, чтобы выполнить задание.</p>
+    </div>
+
+    <script>
+        // Задание 1
+        function task1() {
+        let fullName = prompt("Введите вашу фамилию, имя и отчество:");
+        if (fullName === null || fullName.trim() === "") {
+        document.getElementById("output").innerHTML = "<p style='color:red'>Ошибка: вы не ввели ФИО.</p>";
+        return;
+        }
+        let isConfirmed = confirm("Вы ввели: " + fullName + "\nВсё верно?");
+        if (isConfirmed) {
+        document.getElementById("output").innerHTML = "<p style='color:green'>Здравствуйте, " + fullName + "!</p>";
+        } else {
+        document.getElementById("output").innerHTML = "<p style='color:red'>Ошибка: данные не подтверждены.</p>";
+        }
+        }
+
+        // Задание 2
+        function task2() {
+        let hours = parseInt(prompt("Введите часы (0-23):"), 10);
+        let minutes = parseInt(prompt("Введите минуты (0-59):"), 10);
+
+        if (isNaN(hours) || isNaN(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+        document.getElementById("output").innerHTML = "<p style='color:red'>Ошибка: введите корректное время (часы 0-23, минуты 0-59).</p>";
+        return;
+        }
+
+        let newHours = hours;
+        let newMinutes = minutes + 1;
+
+        if (newMinutes === 60) {
+        newMinutes = 0;
+        newHours = hours + 1;
+        if (newHours === 24) {
+        newHours = 0;
+        }
+        }
+
+        let timeString = String(newHours).padStart(2, '0') + ":" + String(newMinutes).padStart(2, '0');
+        document.getElementById("output").innerHTML = `<p>Исходное время: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}<br>
+        Через одну минуту будет: ${timeString}</p>`;
+        }
+
+        // Функция создания одной таблицы 10x10
+        function createTable(colorFunction) {
+        const SIZE = 10;
+        let html = '<table border="1">';
+
+        for (let row = 0; row < SIZE; row++) {
+        html += '<tr>';
+        for (let col = 0; col < SIZE; col++) {
+        let bgColor = colorFunction(row, col);
+        html += '<td style="background-color: ' + bgColor + ';"></td>';
+        }
+        html += '</tr>';
+        }
+
+        html += '</table>';
+        return html;
+        }
+
+        // Таблица 1: жёлтая левая нижняя половина, синяя верхняя правая половина
+        function getTable1Color(row, col) {
+        if (row > col) {
+        return "#ffcc00"; // жёлтый (нижняя левая половина)
+        } else {
+        return "#3366ff"; // синий (верхняя правая половина + диагональ)
+        }
+        }
+
+        // Таблица 2: синие и розовые диагональные полоски
+        function getTable2Color(row, col) {
+        let diagonalIndex = row - col;
+        if (diagonalIndex % 2 === 0) {
+        return "#3366ff"; // синий
+        } else {
+        return "#ff99cc"; // розовый
+        }
+        }
+
+        // Задание 3
+        function task3() {
+        let table1Html = createTable(getTable1Color);
+        let table2Html = createTable(getTable2Color);
+
+        let containerHtml = '<div class="tableContainer">' + table1Html + table2Html + '</div>';
+        document.getElementById("output").innerHTML = containerHtml;
+        }
+    </script>
+
+</body>
+</html>
